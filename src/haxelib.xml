@@ -1,0 +1,10 @@
+<project name="eggs-mvc" url="https://github.com/eggs-gd/eggs-mvc-hx" license="MIT">
+	<user name="eggs"/>
+	<description><![CDATA[A simple mvc framework for haxe and openfl]]></description>
+	<version name="0.0.1-alpha"><![CDATA[Initial version. Basic mechanism]]></version>
+	<depends name="eggs-utils"/>
+	<depends name="msignal"/>
+	<tag v="openfl"/>
+	<tag v="mvc"/>
+	<tag v="eggs"/>
+</project>
