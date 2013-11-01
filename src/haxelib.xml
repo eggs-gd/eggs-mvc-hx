@@ -4,6 +4,7 @@
 	<version name="0.0.1-alpha"><![CDATA[Initial version. Basic mechanism]]></version>
 	<depends name="eggs-utils"/>
 	<depends name="msignal"/>
+	<depends name="openfl"/>
 	<tag v="openfl"/>
 	<tag v="mvc"/>
 	<tag v="eggs"/>

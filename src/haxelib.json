@@ -10,6 +10,7 @@
 	"dependencies": 
 	{
 		"eggs-utils": "",
-		"msignal": ""
+		"msignal": "",
+		"openfl": ""
 	}
 }
