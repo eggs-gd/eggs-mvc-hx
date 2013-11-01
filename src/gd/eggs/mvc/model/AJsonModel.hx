@@ -6,11 +6,10 @@ import haxe.Json;
 import haxe.rtti.Meta;
 
 /**
- * ...
  * @author Dukobpa3
  */
-class AJsonModel implements IModel implements IAbstractClass
-{
+class AJsonModel implements IModel implements IAbstractClass {
+	
 	//=========================================================================
 	//	PARAMETERS
 	//=========================================================================
@@ -24,6 +23,7 @@ class AJsonModel implements IModel implements IAbstractClass
 	//=========================================================================
 	//	CONSTRUCTOR
 	//=========================================================================
+	
 	private function new() { 
 		_meta = Meta.getFields(Type.getClass(this));
 	}
