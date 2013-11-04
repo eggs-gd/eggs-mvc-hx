@@ -17,6 +17,7 @@
   <classpaths>
     <class path="src" />
     <class path="test" />
+    <class path="..\eggs-utils-hx\src" />
   </classpaths>
   <!-- Build options -->
   <build>
