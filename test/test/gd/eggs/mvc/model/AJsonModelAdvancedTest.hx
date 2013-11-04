@@ -68,7 +68,7 @@ class AJsonModelAdvancedTest
 		model.fillData(data);
 		
 		Assert.areEqual(model.arrayInt[0] ,1);
-		Assert.areEqual(2, model.hashInt.get("two"));
+		Assert.areEqual(model.hashInt.get("two"), 2);
 	}
 	
 	@Test
@@ -123,6 +123,7 @@ class AJsonModelAdvancedTest
 		var child = model.arrayChild[1];
 		Assert.isNotNull(child);
 		Assert.isTrue(Std.is(child, TestChildModel2));
+		Assert.areEqual(model.arrayChild.length, 2);
 		Assert.areEqual(child.hashInt.get("four"), 4);
 		
 		model.fillData(data2);
@@ -130,6 +131,7 @@ class AJsonModelAdvancedTest
 		var child = model.arrayChild[0];
 		Assert.isNotNull(child);
 		Assert.isTrue(Std.is(child, TestChildModel2));
+		Assert.areEqual(model.arrayChild.length, 2);
 		Assert.areEqual(child.hashInt.get("two"), 2);
 	}
 	
@@ -156,7 +158,8 @@ class AJsonModelAdvancedTest
 		var child = model.arrayChild[1];
 		Assert.isNotNull(child);
 		Assert.isTrue(Std.is(child, TestChildModel2));
-		Assert.areEqual(child._id_, 1);
+		Assert.areEqual(model.arrayChild.length, 2);
+		Assert.areEqual(child._id_, '1');
 		
 		
 		model.fillData(data2);
@@ -164,7 +167,8 @@ class AJsonModelAdvancedTest
 		var child = model.arrayChild[0];
 		Assert.isNotNull(child);
 		Assert.isTrue(Std.is(child, TestChildModel2));
-		Assert.areEqual(child._id_, 0);
+		Assert.areEqual(model.arrayChild.length, 2);
+		Assert.areEqual(child._id_, '0');
 	}
 	
 	@BeforeClass

@@ -2,14 +2,14 @@
 <project version="2">
   <!-- Output SWF options -->
   <output>
-    <movie outputType="Application" />
+    <movie outputType="CustomBuild" />
     <movie input="" />
-    <movie path="bin\test.swf" />
+    <movie path="target\build\as3_test.swf" />
     <movie fps="30" />
     <movie width="800" />
     <movie height="600" />
     <movie version="11" />
-    <movie minorVersion="0" />
+    <movie minorVersion="8" />
     <movie platform="Flash Player" />
     <movie background="#FFFFFF" />
   </output>
@@ -23,15 +23,18 @@
   <build>
     <option directives="" />
     <option flashStrict="True" />
+    <option noInlineOnDebug="False" />
     <option mainClass="TestMain" />
     <option enabledebug="True" />
     <option additional="" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>
-    <library name="msignal" />
     <library name="munit" />
+    <library name="mcover" />
     <library name="hamcrest" />
+    <library name="msignal" />
+    <library name="openfl" />
   </haxelib>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>

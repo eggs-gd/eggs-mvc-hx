@@ -20,6 +20,7 @@ class TestChildModel extends AJsonModel {
 	}
 	
 	override public function init() {
+		array = [];
 		isInited = true;
 	}
 	
@@ -41,6 +42,7 @@ class TestParentModel extends AJsonModel {
 	
 	override public function init() {
 		child = new TestChildModel();
+		array = [];
 		isInited = true;
 	}
 	
@@ -70,9 +72,10 @@ class AJsonModelTest
 		var model = new TestChildModel();
 		
 		model.fillData(data);
-		Assert.areEqual(1, model.array[0]);
-		Assert.areEqual("test", model.string);
-		Assert.areEqual(true, model.bool);
+		Assert.areEqual(model.array.length, 2);
+		Assert.areEqual(model.array[0], 1);
+		Assert.areEqual(model.string, "test");
+		Assert.areEqual(model.bool, true);
 	}
 	
 	@Test
@@ -81,8 +84,10 @@ class AJsonModelTest
 		var model = new TestChildModel();
 		
 		model.fillData(data);
-		Assert.areEqual(2, model.array[1]);
-		Assert.areEqual("test", model.string);
+		
+		Assert.areEqual(model.array.length, 2);
+		Assert.areEqual(model.array[1], 2);
+		Assert.areEqual(model.string, "test");
 	}
 	
 	@Test
@@ -102,9 +107,12 @@ class AJsonModelTest
 		var model = new TestParentModel();
 		
 		model.fillData(data);
-		Assert.areEqual(2, model.array[1]);
-		Assert.areEqual("test", model.string);
-		Assert.areEqual(true, model.bool);
+		
+		Assert.areEqual(model.array.length, 2);
+		Assert.areEqual(model.array[1], 2);
+		Assert.areEqual(model.string, "test");
+		Assert.areEqual(model.bool, true);
+		
 		Assert.isTrue(Std.is(model.child, TestChildModel));
 		
 		Assert.areEqual("testChild", model.child.string);
@@ -118,8 +126,10 @@ class AJsonModelTest
 		var model = new TestParentModel();
 		
 		model.fillData(data);
-		Assert.areEqual(2, model.array[1]);
-		Assert.areEqual("test", model.string);
+		Assert.areEqual(model.array.length, 2);
+		Assert.areEqual(model.array[1], 2);
+		Assert.areEqual(model.string, "test");
+		
 		Assert.isTrue(Std.is(model.child, TestChildModel));
 	}
 	
