@@ -1,6 +1,6 @@
 package gd.eggs.mvc.view;
 
-import gd.eggs.display.Sprite;
+import gd.eggs.display.DisplayObject;
 import gd.eggs.utils.DestroyUtils;
 import gd.eggs.utils.IAbstractClass;
 import gd.eggs.utils.Validate;
