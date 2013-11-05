@@ -14,9 +14,6 @@ class AJsonModel implements IModel implements IAbstractClass {
 	//=========================================================================
 	//	PARAMETERS
 	//=========================================================================
-	
-	public var _id_(default, null):String;
-	
 	public var isInited(default, null):Bool;
 	
 	var _meta(default, null):Dynamic;
@@ -39,18 +36,14 @@ class AJsonModel implements IModel implements IAbstractClass {
 	/**
 	 * Рекурсивно заполняет модель данными жсон либо Object|Dynamic
 	 * @param	data 	строка либо Dynamic
-	 * @param	?id 	можно добавить ид. Так же автоматически ставится на айтемы коллекций
 	 */
-	public function fillData(data:Dynamic, ?id:String) {
+	public function deserialize(data:Dynamic) {
 		
 		var object;
 		var fieldRef; 	// Ссылку на поле (this[fieldName])
 		var fieldData; 	// Данные поля (data[fieldName])
 		var fieldType; 	// Метаданные поля (typeof(fieldName))
 		var typedRef:AJsonModel;
-		
-		// установить уид
-		if (id != null) this._id_ = id;
 		
 		// Распарсить объект если тут строка
 		
@@ -71,7 +64,7 @@ class AJsonModel implements IModel implements IAbstractClass {
 			
 			if (Std.is(fieldRef, AJsonModel)) {  // Если поле это дочерняя модель
 				typedRef = cast fieldRef;
-				typedRef.fillData(fieldData, key);
+				typedRef.deserialize(fieldData);
 				
 			} else if (Std.is(fieldRef, StringMap)) { // Если это словарь - отдельная обработка
 				var map:StringMap<Dynamic> = cast fieldRef;
@@ -106,7 +99,7 @@ class AJsonModel implements IModel implements IAbstractClass {
 			// если тип - наследник жсон-модели то заполнить дочерней структурой
 			if (item != null && Std.is(item, AJsonModel)) { 
 				typedRef = cast item;
-				typedRef.fillData(Reflect.field(data, key), key);
+				typedRef.deserialize(Reflect.field(data, key));
 			
 			} else { // Иначе - просто приравниваем
 				item = Reflect.field(data, key);
@@ -142,7 +135,7 @@ class AJsonModel implements IModel implements IAbstractClass {
 				// если тип - наследник жсон-модели то пройтись по детям
 				if (item != null && Std.is(item, AJsonModel)) {
 					typedRef = cast item;
-					typedRef.fillData(childData, Std.string(i));
+					typedRef.deserialize(childData);
 					
 				} else { // Иначе - заполняем по дефолту
 					item = childData;
@@ -160,7 +153,7 @@ class AJsonModel implements IModel implements IAbstractClass {
 				// если тип - наследник жсон-модели то заполнить
 				if (item != null && Std.is(item, AJsonModel)) {
 					typedRef = cast item;
-					typedRef.fillData(Reflect.field(data, key), key);
+					typedRef.deserialize(Reflect.field(data, key));
 					
 				} else { // Иначе - просто приравнять
 					item = Reflect.field(data, key);
