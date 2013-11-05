@@ -151,7 +151,7 @@ class AJsonModel implements IModel implements IAbstractClass {
 				array[i] = item;
 				item = null;
 			}
-		} else { // Проход рефлектов кончает для флеша и прочей динамики
+		} else { // Проход рефлектов конает для флеша и прочей динамики
 			
 			for (key in Reflect.fields(data)) { 
 				

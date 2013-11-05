@@ -18,6 +18,7 @@ enum ViewSignal {
 	invalidated;
 }
 
+// TODO need to rewrite
 class AView extends Sprite implements IView implements IAbstractClass {
 	
 	//=========================================================================

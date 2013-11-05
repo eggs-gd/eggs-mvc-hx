@@ -2,11 +2,9 @@
 -main TestMain
 
 -lib munit
--lib mcover
 -lib hamcrest
 -lib msignal
 -lib openfl
--lib hscript
 
 -cp src
 -cp ../eggs-utils-hx/src
@@ -26,7 +24,7 @@
 -lib hamcrest
 -lib msignal
 -lib openfl
--lib hscript
+-lib openfl-native
 --remap flash:flash
 
 -cp src
@@ -42,7 +40,7 @@
 #-lib hamcrest
 #-lib msignal
 #-lib openfl
-#-lib hscript
+#-lib openfl-native
 #--remap flash:flash
 
 #-cp src
