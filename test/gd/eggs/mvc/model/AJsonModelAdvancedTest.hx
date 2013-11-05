@@ -1,4 +1,4 @@
-package test.gd.eggs.mvc.model;
+package gd.eggs.mvc.model;
 
 import gd.eggs.mvc.model.AJsonModel;
 import haxe.ds.HashMap;
@@ -23,6 +23,9 @@ class TestChildModel2 extends AJsonModel {
 	}
 	
 	override public function init() {
+		arrayInt = [];
+		arrayBool = [];
+		arrayString = [];
 		hashInt = new StringMap<Int>();
 		isInited = true;
 	}
@@ -34,10 +37,10 @@ class TestChildModel2 extends AJsonModel {
 }
  
 class TestParentModel2 extends AJsonModel {
-	@collectionType("test.gd.eggs.mvc.model.TestChildModel2")
+	@collectionType("gd.eggs.mvc.model.TestChildModel2")
 	public var hashChild:StringMap<TestChildModel2>;
 	
-	@collectionType("test.gd.eggs.mvc.model.TestChildModel2")
+	@collectionType("gd.eggs.mvc.model.TestChildModel2")
 	public var arrayChild:Array<TestChildModel2>;
 	
 	public function new () {
@@ -68,7 +71,7 @@ class AJsonModelAdvancedTest
 		model.fillData(data);
 		
 		Assert.areEqual(model.arrayInt[0] ,1);
-		Assert.areEqual(2, model.hashInt.get("two"));
+		Assert.areEqual(model.hashInt.get("two"), 2);
 	}
 	
 	@Test
@@ -123,6 +126,7 @@ class AJsonModelAdvancedTest
 		var child = model.arrayChild[1];
 		Assert.isNotNull(child);
 		Assert.isTrue(Std.is(child, TestChildModel2));
+		Assert.areEqual(model.arrayChild.length, 2);
 		Assert.areEqual(child.hashInt.get("four"), 4);
 		
 		model.fillData(data2);
@@ -130,6 +134,7 @@ class AJsonModelAdvancedTest
 		var child = model.arrayChild[0];
 		Assert.isNotNull(child);
 		Assert.isTrue(Std.is(child, TestChildModel2));
+		Assert.areEqual(model.arrayChild.length, 2);
 		Assert.areEqual(child.hashInt.get("two"), 2);
 	}
 	
@@ -156,7 +161,8 @@ class AJsonModelAdvancedTest
 		var child = model.arrayChild[1];
 		Assert.isNotNull(child);
 		Assert.isTrue(Std.is(child, TestChildModel2));
-		Assert.areEqual(child._id_, 1);
+		Assert.areEqual(model.arrayChild.length, 2);
+		Assert.areEqual(child._id_, '1');
 		
 		
 		model.fillData(data2);
@@ -164,7 +170,8 @@ class AJsonModelAdvancedTest
 		var child = model.arrayChild[0];
 		Assert.isNotNull(child);
 		Assert.isTrue(Std.is(child, TestChildModel2));
-		Assert.areEqual(child._id_, 0);
+		Assert.areEqual(model.arrayChild.length, 2);
+		Assert.areEqual(child._id_, '0');
 	}
 	
 	@BeforeClass
