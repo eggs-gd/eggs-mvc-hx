@@ -1,6 +1,6 @@
 package gd.eggs.mvc.application;
 
-import gd.eggs.display.DisplayObjectContainer;
+import gd.eggs.display.DisplayObject;
 import gd.eggs.mvc.view.AView;
 import gd.eggs.utils.Validate;
 
