@@ -11,7 +11,7 @@
 -cp test
 
 -swf-version 11.8
--swf target/build/as3_test.swf
+-swf target/test/build/as3_test.swf
 
 -debug
 -D fdb
@@ -30,7 +30,7 @@
 -cp src
 -cp ../eggs-utils-hx/src
 -cp test
--neko target/build/neko_test.n
+-neko target/test/build/neko_test.n
 
 --next
 
@@ -47,6 +47,6 @@
 #-cp ../eggs-utils-hx/src
 #-cp test
 #-D HXCPP_M64
-#-cpp target/build/cpp_test
+#-cpp target/test/build/cpp_test
 
 #--next
