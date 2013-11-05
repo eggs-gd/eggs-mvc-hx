@@ -1,4 +1,4 @@
-package test.gd.eggs.mvc.model;
+package gd.eggs.mvc.model;
 
 import gd.eggs.mvc.model.AJsonModel;
 import haxe.ds.HashMap;
@@ -23,6 +23,9 @@ class TestChildModel2 extends AJsonModel {
 	}
 	
 	override public function init() {
+		arrayInt = [];
+		arrayBool = [];
+		arrayString = [];
 		hashInt = new StringMap<Int>();
 		isInited = true;
 	}
@@ -34,10 +37,10 @@ class TestChildModel2 extends AJsonModel {
 }
  
 class TestParentModel2 extends AJsonModel {
-	@collectionType("test.gd.eggs.mvc.model.TestChildModel2")
+	@collectionType("gd.eggs.mvc.model.TestChildModel2")
 	public var hashChild:StringMap<TestChildModel2>;
 	
-	@collectionType("test.gd.eggs.mvc.model.TestChildModel2")
+	@collectionType("gd.eggs.mvc.model.TestChildModel2")
 	public var arrayChild:Array<TestChildModel2>;
 	
 	public function new () {

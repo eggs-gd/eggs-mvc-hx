@@ -1,6 +1,7 @@
 package gd.eggs.mvc.model;
 
 import gd.eggs.utils.IAbstractClass;
+import gd.eggs.utils.Validate;
 import haxe.ds.StringMap;
 import haxe.Json;
 import haxe.rtti.Meta;
@@ -120,7 +121,6 @@ class AJsonModel implements IModel implements IAbstractClass {
 				collectionItem = Reflect.field(data, key);
 			}
 			
-			trace(key, collectionItem);
 			map.set(key, collectionItem);
 			collectionItem = null;
 		}
@@ -129,27 +129,52 @@ class AJsonModel implements IModel implements IAbstractClass {
 	function fillArray(array:Array<Dynamic>, data:Dynamic, childType) 
 	{
 		var collectionItem = null;
-		var intKey;
+		var intKey:Int;
 		
 		// Проходим по всем детям массива
-		for (key in Reflect.fields(data)) 
-		{ 
-			if (childType != null) collectionItem = Type.createInstance(childType, []);
-			
-			// если тип - наследник жсон-модели то пройтись по детям
-			if (collectionItem != null && Std.is(collectionItem, AJsonModel)) 
+		if (Std.is(data, Array)) 
+		{
+			var arr:Array<Dynamic> = cast data;
+			for ( i in 0...arr.length ) 
 			{
-				Reflect.callMethod(collectionItem, Reflect.field(collectionItem, "fillData"), [Reflect.field(data, key), key]);
-			} 
-			else // Иначе - заполняем по дефолту
-			{ 
-				collectionItem = Reflect.field(data, key);
+				var childData = arr[i];
+				
+				if (childType != null) collectionItem = Type.createInstance(childType, []);
+				
+				// если тип - наследник жсон-модели то пройтись по детям
+				if (collectionItem != null && Std.is(collectionItem, AJsonModel)) 
+				{
+					Reflect.callMethod(collectionItem, Reflect.field(collectionItem, "fillData"), [childData, Std.string(i)]);
+				} 
+				else // Иначе - заполняем по дефолту
+				{ 
+					collectionItem = childData;
+				}
+				
+				array[i] = collectionItem;
+				collectionItem = null;
 			}
-			
-			trace(key, collectionItem);
-			intKey = Std.parseInt(key);
-			array[intKey] = collectionItem;
-			collectionItem = null;
+		} 
+		else 
+		{
+			for (key in Reflect.fields(data)) 
+			{ 
+				if (childType != null) collectionItem = Type.createInstance(childType, []);
+				
+				// если тип - наследник жсон-модели то пройтись по детям
+				if (collectionItem != null && Std.is(collectionItem, AJsonModel)) 
+				{
+					Reflect.callMethod(collectionItem, Reflect.field(collectionItem, "fillData"), [Reflect.field(data, key), key]);
+				} 
+				else // Иначе - заполняем по дефолту
+				{ 
+					collectionItem = Reflect.field(data, key);
+				}
+				
+				intKey = Std.parseInt(key);
+				array[intKey] = collectionItem;
+				collectionItem = null;
+			}
 		}
 	}
 	

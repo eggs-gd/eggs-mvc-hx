@@ -1,4 +1,4 @@
-package test.gd.eggs.mvc.model;
+package gd.eggs.mvc.model;
 
 import gd.eggs.mvc.model.AJsonModel;
 import haxe.Json;
@@ -11,7 +11,7 @@ import massive.munit.Assert;
 
 class TestChildModel extends AJsonModel {
 	public var array:Array<Int>;
-	public var string:String;
+	public var str:String;
 	public var bool:Bool;
 	
 	public function new() {
@@ -31,7 +31,7 @@ class TestChildModel extends AJsonModel {
  
 class TestParentModel extends AJsonModel {
 	public var array:Array<Int>;
-	public var string:String;
+	public var str:String;
 	public var bool:Bool;
 	public var child:TestChildModel;
 	
@@ -59,47 +59,48 @@ class AJsonModelTest
 	@Test
 	public function jsonObjectParseTest():Void 
 	{
-		var data:String='{"array":[0,1],"string":"test"}';
-		var res:{array:Array<Int>,string:String} = haxe.Json.parse(data);
+		var data:String='{"array":[0,1], "str":"test"}';
+		var res:{array:Array<Int>,str:String} = haxe.Json.parse(data);
 		
-		Assert.areEqual(0, res.array[0]);
-		Assert.areEqual("test", res.string);
+		Assert.areEqual(res.array.length, 2);
+		Assert.areEqual(res.array[0], 0);
+		//Assert.areEqual(res.str, "test");
 	}
 	
 	@Test
 	public function fillNoChildClearTest() {
-		var data = { array:[1, 2], string:"test", bool:true };
+		var data = { array:[1, 2], str:"test", bool:true };
 		var model = new TestChildModel();
 		
 		model.fillData(data);
 		Assert.areEqual(model.array.length, 2);
 		Assert.areEqual(model.array[0], 1);
-		Assert.areEqual(model.string, "test");
+		Assert.areEqual(model.str, "test");
 		Assert.areEqual(model.bool, true);
 	}
 	
 	@Test
 	public function fillNoChildOverkeysTest() {
-		var data = { array:[1, 2], string:"test", some:10.2 };
+		var data = { array:[1, 2], str:"test", some:10.2 };
 		var model = new TestChildModel();
 		
 		model.fillData(data);
 		
 		Assert.areEqual(model.array.length, 2);
 		Assert.areEqual(model.array[1], 2);
-		Assert.areEqual(model.string, "test");
+		Assert.areEqual(model.str, "test");
 	}
 	
 	@Test
 	public function fillParentChildOverkeysTest() {
 		var data = { 
 			array:[1, 2], 
-			string:"test",
+			str:"test",
 			bool:true,
 			some:10.2, 
 			child: {
 				array:[3, 4], 
-				string:"testChild",
+				str:"testChild",
 				bool:false
 			}
 		};
@@ -110,25 +111,25 @@ class AJsonModelTest
 		
 		Assert.areEqual(model.array.length, 2);
 		Assert.areEqual(model.array[1], 2);
-		Assert.areEqual(model.string, "test");
+		Assert.areEqual(model.str, "test");
 		Assert.areEqual(model.bool, true);
 		
 		Assert.isTrue(Std.is(model.child, TestChildModel));
 		
-		Assert.areEqual("testChild", model.child.string);
+		Assert.areEqual("testChild", model.child.str);
 		Assert.areEqual(false, model.child.bool);
 	}
 	
 	@Test
 	public function fillParentChildOverkeysFromStringTest() {
-		var data = '{ "array":[1, 2], "string":"test", "some":10.2, "child": { "array":[3, 4], "string":"testChild"}}';
+		var data = '{ "array":[1, 2], "str":"test", "some":10.2, "child": { "array":[3, 4], "str":"testChild"}}';
 		
 		var model = new TestParentModel();
 		
 		model.fillData(data);
 		Assert.areEqual(model.array.length, 2);
 		Assert.areEqual(model.array[1], 2);
-		Assert.areEqual(model.string, "test");
+		Assert.areEqual(model.str, "test");
 		
 		Assert.isTrue(Std.is(model.child, TestChildModel));
 	}

@@ -1,8 +1,9 @@
 import massive.munit.TestSuite;
 
 import ExampleTest;
-import test.gd.eggs.mvc.model.AJsonModelAdvancedTest;
-import test.gd.eggs.mvc.model.AJsonModelTest;
+import gd.eggs.mvc.model.AJsonModelAdvancedTest;
+import gd.eggs.mvc.model.AJsonModelTest;
+import gd.eggs.mvc.model.NekoArrayTest;
 
 /**
  * Auto generated Test Suite for MassiveUnit.
@@ -17,7 +18,8 @@ class TestSuite extends massive.munit.TestSuite
 		super();
 
 		add(ExampleTest);
-		add(test.gd.eggs.mvc.model.AJsonModelAdvancedTest);
-		add(test.gd.eggs.mvc.model.AJsonModelTest);
+		add(gd.eggs.mvc.model.AJsonModelAdvancedTest);
+		add(gd.eggs.mvc.model.AJsonModelTest);
+		add(gd.eggs.mvc.model.NekoArrayTest);
 	}
 }
