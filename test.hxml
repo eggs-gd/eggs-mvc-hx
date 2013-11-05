@@ -2,7 +2,6 @@
 -main TestMain
 
 -lib munit
--lib mcover
 -lib hamcrest
 -lib msignal
 -lib openfl
