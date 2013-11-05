@@ -1,0 +1,16 @@
+{
+	"name": "eggs-mvc",
+	"license": "MIT",
+	"tags": ["openfl","mvc","eggs"],
+	"description": "A simple mvc framework for haxe and openfl",
+	"contributors": ["eggs"],
+	"releasenote": "Initial version. Basic mechanism",
+	"version": "0.0.1-alpha",
+	"url": "https://github.com/eggs-gd/eggs-mvc-hx",
+	"dependencies": 
+	{
+		"eggs-utils": "",
+		"msignal": "",
+		"openfl": ""
+	}
+}
