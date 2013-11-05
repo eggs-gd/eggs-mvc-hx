@@ -21,6 +21,8 @@ class TestChildModel extends AJsonModel {
 	
 	override public function init() {
 		array = [];
+		str = '';
+		bool = false;
 		isInited = true;
 	}
 	
@@ -32,6 +34,7 @@ class TestChildModel extends AJsonModel {
 class TestParentModel extends AJsonModel {
 	public var array:Array<Int>;
 	public var str:String;
+	public var some:Float;
 	public var bool:Bool;
 	public var child:TestChildModel;
 	
@@ -43,6 +46,9 @@ class TestParentModel extends AJsonModel {
 	override public function init() {
 		child = new TestChildModel();
 		array = [];
+		str = '';
+		some = 0.0;
+		bool = false;
 		isInited = true;
 	}
 	
@@ -129,7 +135,7 @@ class AJsonModelTest
 		model.fillData(data);
 		Assert.areEqual(model.array.length, 2);
 		Assert.areEqual(model.array[1], 2);
-		Assert.areEqual(model.str, "test");
+		Assert.areEqual(model.some, 10.2);
 		
 		Assert.isTrue(Std.is(model.child, TestChildModel));
 	}
