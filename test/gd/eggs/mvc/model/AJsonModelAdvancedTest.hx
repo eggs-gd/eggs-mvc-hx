@@ -68,7 +68,7 @@ class AJsonModelAdvancedTest
 		var data = { arrayInt:[1, 2], hashInt:{one:1, two:2, three:3} };
 		var model = new TestChildModel2();
 		
-		model.fillData(data);
+		model.deserialize(data);
 		
 		Assert.areEqual(model.arrayInt[0] ,1);
 		Assert.areEqual(model.hashInt.get("two"), 2);
@@ -95,7 +95,7 @@ class AJsonModelAdvancedTest
 		};
 		var model = new TestParentModel2();
 		
-		model.fillData(data);
+		model.deserialize(data);
 		
 		var child = model.hashChild.get("two");
 		Assert.isNotNull(child);
@@ -121,7 +121,7 @@ class AJsonModelAdvancedTest
 		};
 		var model = new TestParentModel2();
 		
-		model.fillData(data);
+		model.deserialize(data);
 		
 		var child = model.arrayChild[1];
 		Assert.isNotNull(child);
@@ -129,7 +129,7 @@ class AJsonModelAdvancedTest
 		Assert.areEqual(model.arrayChild.length, 2);
 		Assert.areEqual(child.hashInt.get("four"), 4);
 		
-		model.fillData(data2);
+		model.deserialize(data2);
 		
 		var child = model.arrayChild[0];
 		Assert.isNotNull(child);
@@ -156,22 +156,19 @@ class AJsonModelAdvancedTest
 		};
 		var model = new TestParentModel2();
 		
-		model.fillData(data);
+		model.deserialize(data);
 		
 		var child = model.arrayChild[1];
 		Assert.isNotNull(child);
 		Assert.isTrue(Std.is(child, TestChildModel2));
 		Assert.areEqual(model.arrayChild.length, 2);
-		Assert.areEqual(child._id_, '1');
 		
-		
-		model.fillData(data2);
+		model.deserialize(data2);
 		
 		var child = model.arrayChild[0];
 		Assert.isNotNull(child);
 		Assert.isTrue(Std.is(child, TestChildModel2));
 		Assert.areEqual(model.arrayChild.length, 2);
-		Assert.areEqual(child._id_, '0');
 	}
 	
 	@BeforeClass

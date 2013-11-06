@@ -78,7 +78,7 @@ class AJsonModelTest
 		var data = { array:[1, 2], str:"test", bool:true };
 		var model = new TestChildModel();
 		
-		model.fillData(data);
+		model.deserialize(data);
 		Assert.areEqual(model.array.length, 2);
 		Assert.areEqual(model.array[0], 1);
 		Assert.areEqual(model.str, "test");
@@ -90,7 +90,7 @@ class AJsonModelTest
 		var data = { array:[1, 2], str:"test", some:10.2 };
 		var model = new TestChildModel();
 		
-		model.fillData(data);
+		model.deserialize(data);
 		
 		Assert.areEqual(model.array.length, 2);
 		Assert.areEqual(model.array[1], 2);
@@ -113,7 +113,7 @@ class AJsonModelTest
 		
 		var model = new TestParentModel();
 		
-		model.fillData(data);
+		model.deserialize(data);
 		
 		Assert.areEqual(model.array.length, 2);
 		Assert.areEqual(model.array[1], 2);
@@ -132,7 +132,7 @@ class AJsonModelTest
 		
 		var model = new TestParentModel();
 		
-		model.fillData(data);
+		model.deserialize(data);
 		Assert.areEqual(model.array.length, 2);
 		Assert.areEqual(model.array[1], 2);
 		Assert.areEqual(model.some, 10.2);

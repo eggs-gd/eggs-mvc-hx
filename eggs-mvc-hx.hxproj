@@ -23,7 +23,6 @@
   <build>
     <option directives="" />
     <option flashStrict="True" />
-    <option noInlineOnDebug="False" />
     <option mainClass="TestMain" />
     <option enabledebug="True" />
     <option additional="" />
@@ -55,7 +54,7 @@
   <postBuildCommand alwaysRun="False" />
   <!-- Other project options -->
   <options>
-    <option showHiddenPaths="False" />
+    <option showHiddenPaths="True" />
     <option testMovie="Custom" />
     <option testMovieCommand="munit test &amp;&amp; pause" />
   </options>
