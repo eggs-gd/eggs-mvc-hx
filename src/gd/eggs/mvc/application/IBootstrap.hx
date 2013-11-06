@@ -15,4 +15,6 @@ interface IBootstrap extends IInitialize {
 	function registerViews():Void;
 	function registerNotifications():Void;
 	function registerControllers():Void;
+	
+	function startApp():Void;
 }
