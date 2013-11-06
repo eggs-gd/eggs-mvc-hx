@@ -60,7 +60,7 @@ class AJsonModel implements IModel implements IAbstractClass {
 			
 			if (Std.is(fieldRef, AJsonModel)) {
 				var typedRef:AJsonModel = cast fieldRef;
-				typedRef.deserialize(fieldData, key);
+				typedRef.deserialize(fieldData);
 				
 			} else if (Std.is(fieldRef, StringMap)) {
 				var map:StringMap<Dynamic> = cast fieldRef;
@@ -91,7 +91,7 @@ class AJsonModel implements IModel implements IAbstractClass {
 			
 			if (Validate.isNotNull(item) && Std.is(item, AJsonModel)) { 
 				var typedRef:AJsonModel = cast item;
-				typedRef.deserialize(Reflect.field(data, key), key);
+				typedRef.deserialize(Reflect.field(data, key));
 				
 			} else {
 				item = Reflect.field(data, key);
@@ -126,8 +126,8 @@ class AJsonModel implements IModel implements IAbstractClass {
 				
 				// если тип - наследник жсон-модели то пройтись по детям
 				if (Validate.isNotNull(item) && Std.is(item, AJsonModel)) {
-					var typedRef:AJsonModel = cast item;
-					typedRef.deserialize(childData, Std.string(i));
+					typedRef = cast item;
+					typedRef.deserialize(childData);
 					
 				} else { // Иначе - заполняем по дефолту
 					item = childData;
@@ -146,8 +146,8 @@ class AJsonModel implements IModel implements IAbstractClass {
 				
 				// если тип - наследник жсон-модели то заполнить
 				if (Validate.isNotNull(item) && Std.is(item, AJsonModel)) {
-					typedRef:AJsonModel = cast item;
-					typedRef.deserialize(Reflect.field(data, key), key);
+					typedRef = cast item;
+					typedRef.deserialize(Reflect.field(data, key));
 					
 				} else { // Иначе - просто приравнять
 					item = Reflect.field(data, key);
