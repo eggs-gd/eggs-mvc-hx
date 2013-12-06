@@ -41,21 +41,15 @@ class AJsonModel implements IModel implements IAbstractClass {
 	 * @param	data 	строка либо Dynamic
 	 */
 	public function deserialize(data:Dynamic) {
-		var object:Dynamic;
-		if (Std.is(data, String)) {
-			object = Json.parse(data);
-		} else {
-			object = data;
-		}
 		
 		var instanceFields = Type.getInstanceFields(Type.getClass(this));
-		for (key in Reflect.fields(object)) {
-			if (!instanceFields.has(key)) {
-				continue;
-			}
+		
+		for (key in Reflect.fields(data)) {
+			
+			if (!instanceFields.has(key)) continue;
 			
 			var fieldRef = Reflect.field(this, key);
-			var fieldData = Reflect.field(object, key);
+			var fieldData = Reflect.field(data, key);
 			var fieldType = getCollectionType(key);
 			
 			if (Std.is(fieldRef, AJsonModel)) {
